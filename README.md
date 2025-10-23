@@ -22,7 +22,7 @@ Keystones, Deep Learning, Old-growth forests, Multispectral Imagery, SAR imagery
 
 ## Main Result
 
-![Big-tree Forests of Vancouver Island](Main_fig.jpg)
+![Big-tree Forests of Vancouver Island](Main_fig3.jpg)
 **Figure 1** Scatter plot of FSC vs a) log transformed stand age and b) forest maturity index (IMAT). 
 
 # R Scripts Description:
