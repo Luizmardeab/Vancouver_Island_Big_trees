@@ -23,7 +23,7 @@ Keystones, Deep Learning, Old-growth forests, Multispectral Imagery, SAR imagery
 ## Main Result
 
 ![Big-tree Forests of Vancouver Island](Main_fig3.jpg)
-**Figure 1** Scatter plot of FSC vs a) log transformed stand age and b) forest maturity index (IMAT). 
+**Figure 1** Bivariate map of big tree forests locations, classified into top 10% (> 44m), top 5% (>=48m) and 1% (>=54m) tallest canopies and old (>=250 years); mature (>80 and <250 years); and young/second growth forest (<80years) on the Islands on Vancouver Island: a) large unprotected old big-tree forests northwest of the island; b) old-growth management areas (OGMAs), a type of OECM, north of the Woss village in the Nimpkish Valley; c) southeast Strathcona park boundary; d) Coastal Douglas fir mature big-tree forest inside the Saysutshun (Newcastle Island Marine) Park; and e) Fairy Creek watershed partially covered by OGMAs. 
 
 # R Scripts Description:
 **- 1_BC_tree_data.R**\
