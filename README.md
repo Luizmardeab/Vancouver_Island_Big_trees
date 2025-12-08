@@ -1,4 +1,4 @@
-# THE LAST GIANTS: MAPPING BIG-TREE FORESTS OF VANCOUVER ISLAND WITH DEEP LEARNING AND LIDAR-SENTINEL FUSION  
+# The Last Giants: Deep Learning Reveals Critical Conservation Gaps in Canada's Coastal Temperate Rainforests 
 
 **Authors:**\
 Luizmar de Assis Barros<sup>a</sup>, Karen Price<sup>b</sup>, Camile Sothe<sup>c</sup>, Chris Johnson<sup>a</sup>, Juan Pablo Ramírez-Delgado<sup>a</sup>, Xavier Llano<sup>a</sup>, Michelle Venter<sup>a</sup>, Oscar Venter<sup>a</sup>
@@ -11,12 +11,18 @@ c *Planet Labs PBC, San Francisco, 695571, California, USA*
 
 ## Abstract
 
-Temperate rainforests of the Pacific Northwest of Canada are home to some of the largest trees in the World. Decades of overharvesting, targeting the most productive forests, and biased protection of low-productivity and low-accessibility forests have transformed much of the complex, large-treed old-growth into young, homogeneous stands. Adding to big-trees’ natural mortality and slow recruitment, such biases put these trees among the most imperilled organisms on earth. In the context of the 30x30 goals, it is crucial that conservation efforts first aim to alleviate these historical biases by targeting these rare large-treed forests. Current mapping of the remaining large-treed forests is insufficient to support conservation efforts. To address this gap, we developed a high-resolution canopy height model using a UNET deep-learning approach, trained on LiDAR-derived 99th percentile heights and various combinations of predictor variables derived from Sentinel-1 and -2. Compared to global canopy height models, our model trained with Sentinel-1 and Sentinel-2 (R² = 0.76, MAE = 4.90 m, RMSE = 6.92, BIAS = 0.34 m) improved explained variance by 35%, reduction in prediction error 27% for RMSE and 33% for MAE, reduced bias by ~10x, and increased the maximum predicted height from 58 m to 81 m. We identified 160k ha (31k – 314k ha) of big tree forests, with big-trees defined as the Top 5% = 48 m [Top 1% = 54 m to Top 10% = 44 m]. We also found that the majority of these forests are in high elevations (500 to 800 m), on steep slopes (24–40°), and within 100 m of streams or wet areas, which are less accessible to humans and machinery or have legal restrictions. As for their protection status, 62% of big-tree forests are currently unprotected, 27% within formally protected areas, and 11% in OECMs. When overlapped with harvested areas, we found that 3k ha, equivalent to more than 4,000 soccer fields of logged big tree forests between 2019 and 2025. Part of these logging operations occurred within old-growth management areas, a type of OECM. Our work offers a framework for conservation and monitoring of big tree forests with high accuracy and open-source data, enabling targeted conservation efforts that can mitigate historical forestry and conservation biases.
+Canada’s coastal temperate rainforests support some of the world’s largest trees. Yet, decades of logging concentrated in the most productive forests, combined with the protection of less-productive areas, have transformed much of this ecosystem into younger, homogeneous stands. Such biases, compounded by natural mortality and slow recruitment, place big trees among the most imperiled organisms on Earth. Effective conservation efforts must address these historical biases by protecting rare big-treed forests. Current inventories lack spatial resolution, accuracy, and ability to capture forests sustaining the largest trees. To overcome these limitations, we developed a high-resolution (10-m) big-treed forest map by integrating airborne LiDAR, satellite imagery, and a deep learning approach. We identified approximately 160,000 hectares of big-treed forests, with roughly half located in human-modified landscapes and half in regions with reduced accessibility and limited disturbance. Of these last remaining big-treed forests, about 62% were unprotected. Notably, only 38% of the existing protected areas (PAs) and less than 2% of Other Effective Conservation Measures (OECMs) contain at least 1 ha of big-treed forest. Together, our results show that big-treed forests are under-protected, highly fragmented, and vulnerable to further human-caused loss. Our study provides a scalable, open-access framework for high-accuracy mapping and monitoring of big-treed forests to support targeted conservation of these rare and vulnerable ecosystems.
 
 ---
 
-## Index Terms
-Keystones, Deep Learning, Old-growth forests, Multispectral Imagery, SAR imagery
+## Significance Statement
+
+Big-treed forests are among the most ecologically valuable yet most threatened components of coastal temperate rainforests. Their conservation has been hindered by the absence of accurate, high-resolution maps capable of identifying where the largest trees persist. We address this gap by developing a 10-m big-treed forest map using airborne LiDAR, satellite imagery, and deep learning, revealing their true extent, distribution, and protection status. Our results show that these forests are rare, highly fragmented, and disproportionately unprotected, with about half occurring in remote, reduced-access regions and half in human-modified landscapes. Although focused on Vancouver Island, Canada, our approach provides a scalable, open-access framework to guide conservation planning and long-term monitoring of threatened big-treed ecosystems worldwide.
+
+---
+
+## Keywords
+Keystones, LiDAR, Old-growth forests, Multispectral Imagery, SAR imagery.
 
 ---
 
