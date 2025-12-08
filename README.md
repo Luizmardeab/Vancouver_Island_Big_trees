@@ -1,11 +1,12 @@
 # The Last Giants: Deep Learning Reveals Critical Conservation Gaps in Canada's Coastal Temperate Rainforests 
 
 **Authors:**\
-Luizmar de Assis Barros<sup>a</sup>, Karen Price<sup>b</sup>, Camile Sothe<sup>c</sup>, Chris Johnson<sup>a</sup>, Juan Pablo Ramírez-Delgado<sup>a</sup>, Xavier Llano<sup>a</sup>, Michelle Venter<sup>a</sup>, Oscar Venter<sup>a</sup>
+Luizmar de Assis Barros<sup>a</sup>, José Bermúdez<sup>b</sup>, Karen Price<sup>c</sup>, Camile Sothe<sup>d</sup>, Chris Johnson<sup>a</sup>, Juan Pablo Ramírez-Delgado<sup>a</sup>, Xavier Llano<sup>a</sup>, Alemu Gonsamo<sup>b</sup>, Michelle Venter<sup>a</sup>, Oscar Venter<sup>a</sup>
 
 a *University of Northern British Columbia, 3333 University Way, Prince George, V2N 4Z9, British Columbia, Canada*\
-b *Independent Researcher, 1355 Malkow Road, Smithers, BC V0J 2N7, Canada*\
-c *Planet Labs PBC, San Francisco, 695571, California, USA*
+b *McMaster University, Hamilton, L8S 4K1, Canada
+c *Independent Researcher, 1355 Malkow Road, Smithers, BC V0J 2N7, Canada*\
+d *Planet Labs PBC, San Francisco, 695571, California, USA*
 
 ---
 
