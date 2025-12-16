@@ -32,6 +32,16 @@ Keystones, LiDAR, Multispectral Imagery, Old-growth forests, SAR imagery.
 ![Big-tree Forests of Vancouver Island](Main_fig3.jpg)
 **Figure 1** Bivariate map of big tree forests locations, classified into top 10% (> 44m), top 5% (>=48m) and 1% (>=54m) tallest canopies and old (>=250 years); mature (>80 and <250 years); and young/second growth forest (<80years) on the Islands on Vancouver Island: a) large unprotected old big-tree forests northwest of the island; b) old-growth management areas (OGMAs), a type of OECM, north of the Woss village in the Nimpkish Valley; c) southeast Strathcona park boundary; d) Coastal Douglas fir mature big-tree forest inside the Saysutshun (Newcastle Island Marine) Park; and e) Fairy Creek watershed partially covered by OGMAs. 
 
+# Python Scripts Description:
+**- 1_BC_tree_data.R**\
+  Pre-processing of British Columbia tree-level field inventory data and calculation of old-growth structural attributes\
+**- 2_plot_level_comp_metrics.R**\
+  Calculation of LiDAR-derived Forest Structural Complexity (FSC) indices at plot level\
+**- 3_comp_met_analysis.R**\
+  Random forest analysis of field-measured old-growth structures vs LiDAR FSC indices\
+**- 4_Anova_analysis_Full.R**\
+  Comparison of stand age groups, Maturity clusters, and Productivity vs FSC
+
 # R Scripts Description:
 **- 1_BC_tree_data.R**\
   Pre-processing of British Columbia tree-level field inventory data and calculation of old-growth structural attributes\
@@ -42,7 +52,3 @@ Keystones, LiDAR, Multispectral Imagery, Old-growth forests, SAR imagery.
 **- 4_Anova_analysis_Full.R**\
   Comparison of stand age groups, Maturity clusters, and Productivity vs FSC
 
-# Data Summaries:
-**data_Full.csv**: Field and LiDAR metrics unfiltered\
-**data_75.csv**: Field and LiDAR metrics filtered with a voxel size of 0.4 m, resulting in a drop of 25% on the point cloud density\
-**data_50.csv**: Field and LiDAR metrics filtered with a voxel size of 0.75 m, resulting in a drop of 50% on the point cloud density
