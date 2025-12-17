@@ -1,3 +1,23 @@
+# https://youtu.be/0W6MKZqSke8
+
+"""
+Author: Dr. Sreenivas Bhattiprolu
+
+Original code is from the following source. It comes with MIT License so please mention
+the original reference when sharing.
+
+The original code has been modified to fix a couple of bugs and chunks of code
+unnecessary for smooth tiling are removed.
+
+# MIT License
+# Copyright (c) 2017 Vooban Inc.
+# Coded by: Guillaume Chevalier
+# Source to original code and license:
+#     https://github.com/Vooban/Smoothly-Blend-Image-Patches
+#     https://github.com/Vooban/Smoothly-Blend-Image-Patches/blob/master/LICENSE
+
+"""
+"""Perform smooth predictions on an image from tiled prediction patches."""
 
 import os
 from itertools import product
