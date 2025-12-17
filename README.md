@@ -48,7 +48,7 @@ Functions used for reading and processing image patches, obtained from https://g
 **- 7_Predict_height.py**\
 Once the model was calibrated and the best five epochs selected, we predicted canopy height and cover using our wall-to-wall predictors. We loaded each of the best five epochs, predicted, and combined the results.\
 **- 8_smooth_tile_predition.py**\
-Predictions results often degraded towards the edges of patches. This function helps minimize this effect for a seamless merging of all predicted patches \
+Predictions results often degraded towards the edges of patches. This function helps minimize this effect for a seamless merging of all predicted patches. Obtained fro https://github.com/Vooban\
 **- 9_Crop&merge_predition.ipynb**\
 To further improve prediction on edges, our prediction was performed for tiles with 250-pixel buffers. Here, we removed the buffer and merged the results.
 
