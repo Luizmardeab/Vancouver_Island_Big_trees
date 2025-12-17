@@ -33,22 +33,32 @@ Keystones, LiDAR, Multispectral Imagery, Old-growth forests, SAR imagery.
 **Figure 1** Bivariate map of big tree forests locations, classified into top 10% (> 44m), top 5% (>=48m) and 1% (>=54m) tallest canopies and old (>=250 years); mature (>80 and <250 years); and young/second growth forest (<80years) on the Islands on Vancouver Island: a) large unprotected old big-tree forests northwest of the island; b) old-growth management areas (OGMAs), a type of OECM, north of the Woss village in the Nimpkish Valley; c) southeast Strathcona park boundary; d) Coastal Douglas fir mature big-tree forest inside the Saysutshun (Newcastle Island Marine) Park; and e) Fairy Creek watershed partially covered by OGMAs. 
 
 # Python Scripts Description:
-**- 1_BC_tree_data.R**\
-  Pre-processing of British Columbia tree-level field inventory data and calculation of old-growth structural attributes\
-**- 2_plot_level_comp_metrics.R**\
-  Calculation of LiDAR-derived Forest Structural Complexity (FSC) indices at plot level\
-**- 3_comp_met_analysis.R**\
-  Random forest analysis of field-measured old-growth structures vs LiDAR FSC indices\
-**- 4_Anova_analysis_Full.R**\
-  Comparison of stand age groups, Maturity clusters, and Productivity vs FSC
+**- 1_Prep_IMG_MSK.ipynb**\
+  Download and pre-processing of the wall-to-wall data predictors, as well as alignment all predictors and reference data tiles\
+**- 2_Patchify_IGM_MSK.ipynb**\
+  Sample acquisition of coregistered patches (128x128 pixels, 10m resolution) of the reference and predictors data\
+**- 3_DL_training.py**\
+  Deep learning model training using training and validation patches obtained from step 2\
+**- 4_Deep_learning_UNET.py**\
+  Two U-Net architectures used during our ablation study. While both structures are nearly identical, the second includes a second output channel for uncertainty estimation\
+**- 5_loss_Wloss.py**\
+Loss functions used for model training and assessment\
+**- 6_utils.py**\
+Functions used for reading and processing image patches, obtained from https://github.com/Vooban\
+**- 7_Predict_height.py**\
+Once the model was calibrated and the best five epochs selected, we predicted canopy height and cover using our wall-to-wall predictors. We loaded each of the best five epochs, predicted, and combined the results.\
+**- 8_smooth_tile_predition.py**\
+Predictions results often degraded towards the edges of patches. This function helps minimize this effect for a seamless merging of all predicted patches \
+**- 9_Crop&merge_predition.ipynb**\
+To further improve prediction on edges, our prediction was performed for tiles with 250-pixel buffers. Here, we removed the buffer and merged the results.
 
 # R Scripts Description:
-**- 1_BC_tree_data.R**\
-  Pre-processing of British Columbia tree-level field inventory data and calculation of old-growth structural attributes\
-**- 2_plot_level_comp_metrics.R**\
-  Calculation of LiDAR-derived Forest Structural Complexity (FSC) indices at plot level\
-**- 3_comp_met_analysis.R**\
-  Random forest analysis of field-measured old-growth structures vs LiDAR FSC indices\
-**- 4_Anova_analysis_Full.R**\
-  Comparison of stand age groups, Maturity clusters, and Productivity vs FSC
+**- 1_Big_treed_Forest_Maps.R**\
+  Here we mapped big-treed forest using our locally trained canopy cover  and height layers, as well as an alternative global dataset and a local map of forest inventory commonly used in local studies\
+**- 2_Fig1_FigS1_S2_S6_S8.R**\
+  Data processing leading to Figure 1 and Supplemental Figures 1, 2, 6 and 8. Here we obtain ~1.1 million reference LiDAr pixels and use to assess models' performance and residuals\
+**- 3_FigS3_Tables.R**\
+  Processing of all big-treed forest maps leading to Figure S3 and main and supplemental result tables. Here we assessed big-treed forest overlaps across different scales and alternative dataset\
+**- 4_FigureS4_S5.R**\
+  Processing of big-treed forest centroids to assess big-treed forest distribution across environmental gradients. 
 
