@@ -53,11 +53,11 @@ df <- na.omit(df)
 
 # --- Compute R2 ---
 lm_model <- lm(Reference ~ Predicted, data = df) #
-r2_value <- summary(lm_model)$r.squared  # Extract RÂ²
+r2_value <- summary(lm_model)$r.squared  # Extract R²
 
 ## Figure S2 ######
 
-p <- df%>%#filter(CC_ab5>=0)%>%
+p <- df%>%
   ggplot( aes(x = Reference, y = Predicted)) +
   geom_bin2d(bins = 200) +  # bins resolution
   scale_fill_viridis_c(option = "D", 
@@ -73,7 +73,7 @@ p <- df%>%#filter(CC_ab5>=0)%>%
 
 # Add R² as an annotation
 p + annotate("text", x = 1/15, y = 98, 
-             label = paste0("R2 = ", round(r2_value, 3)), 
+             label = paste0("R2 = ", round(r2_value, 2)), 
              size = 6, hjust = 0, fontface = "bold")+
   theme(legend.position=c(0.9,0.22),
         strip.text.x = element_text( size = 12, color = "black", face = "bold"),
@@ -147,10 +147,10 @@ nrow(df)
 
 ## Figure 2 ####
 lm_model <- lm(ref_median ~ median_Potapov, data = df) #
-r2_value <- summary(lm_model)$r.squared  # Extract RÂ²
+r2_value <- summary(lm_model)$r.squared  # Extract R²
 r2_value
 
-p <- df%>%#filter(MEDIAN_prdhgt>45&MEDIAN_ldrhgt>24)%>%
+p <- df%>%
   ggplot( aes(x = ref_median, y = pred_median)) +
   geom_bin2d(bins = 90) +  # Adjust bins for resolution
   scale_fill_viridis_c(option = "A", 
@@ -159,11 +159,10 @@ p <- df%>%#filter(MEDIAN_prdhgt>45&MEDIAN_ldrhgt>24)%>%
                        trans = "sqrt"  # Adjusts contrast for better visibility) +  # Use viridis color scale
   )+
   geom_abline(slope = 1, intercept =  0, linetype = "dashed", color = "red", size = 1) +
-  # geom_smooth(method = "lm",  color = "grey", size = 0.5, formula = 'y ~ x') +#fill = "grey",
   theme_minimal() +
   coord_cartesian(ylim = c(0, 70), xlim = c(0, 75)) +  
   labs(x = "Reference Canopy Height (m)", y = "Predicted Canopy Height (m)", fill = "Density")
-# Add RÂ² as an annotation
+# Add R² as an annotation
 p + annotate("text", x = 1/15, y = 65, 
              label = paste0("R2 = ", round(r2_value, 3)), 
              size = 6, hjust = 0, fontface = "bold")+
@@ -177,8 +176,7 @@ p + annotate("text", x = 1/15, y = 65,
         panel.background=element_rect(fill="white", colour="grey", linewidth=0.5, linetype="solid"),
         panel.grid.major=element_line(linewidth=0.25, linetype='dashed', colour="lightgrey"),
         panel.grid.minor=element_line(linewidth=0.25, linetype='dashed', colour="lightgrey"), 
-        plot.title=element_text(color="black", size=14, hjust=0,face='bold'), #axis.title.x=element_blank(),axis.ticks.x=element_blank(),
-        #axis.text.x=element_blank(),#element_text(size=10, angle=45, hjust = 1), 
+        plot.title=element_text(color="black", size=14, hjust=0,face='bold'),  
         axis.title.y=element_text(size=12), axis.text.x=element_text(size=12),
         axis.text.y=element_text(size=12), legend.key=element_rect(fill="transparent", colour="transparent")) 
 
@@ -252,7 +250,6 @@ p_ref <- df %>%
   stat_boxplot(geom = "errorbar", width = 0.2) +
   geom_boxplot(outlier.shape = NA, width = 0.5, fill='darkgreen', alpha=1) +
   geom_hline(yintercept = 0, color = "grey", linetype = "dashed", size = 1) +
-  # coord_cartesian(ylim = c(-25, 35)) +
   coord_flip(ylim = c(0, 70))+
   scale_fill_viridis_d(option = "B", begin = 0.1) +  # Skip the very dark color
   theme_minimal() +
@@ -272,7 +269,7 @@ p_ref <- df %>%
         panel.background=element_rect(fill="white", colour="grey", size=0.5, linetype="solid"),
         panel.grid.major=element_line(size=0.25, linetype='dashed', colour="lightgrey"),
         panel.grid.minor=element_line(size=0.25, linetype='dashed', colour="lightgrey"), 
-        plot.title=element_blank(),#element_text(color="black", size=14, hjust=0,face='bold'), #axis.title.x=element_blank(),
+        plot.title=element_blank(),
         axis.ticks = element_line(color="black"),
         axis.title.y=element_blank(), axis.text.x=element_text(color="black",size=12),
         axis.text.y=element_text(color="black",size=12), legend.key=element_rect(fill="transparent", colour="transparent")) 
@@ -284,7 +281,6 @@ p_res2 <- df %>%
   stat_boxplot(geom = "errorbar", width = 0.2) +
   geom_boxplot(outlier.shape = NA, width = 0.5, fill='yellow', alpha=1) +
   geom_hline(yintercept = 0, color = "grey", linetype = "dashed", size = 1) +
-  # coord_cartesian(ylim = c(-25, 35)) +
   coord_flip(ylim = c(-12, 25))+
   
   theme_minimal() +
@@ -383,22 +379,17 @@ p_res_long <- df %>%mutate(MAX_ldrhgt=ref_median)%>%
     MAX_ldrhgt >= 35 & MAX_ldrhgt < 40 ~ "35-40m",
     MAX_ldrhgt >= 40 & MAX_ldrhgt < 45 ~ "40-45m",
     MAX_ldrhgt >= 45 & MAX_ldrhgt < 50 ~ "45-50m",
-    # MAX_ldrhgt >= 50 & MAX_ldrhgt < 55 ~ "50-55m",
-    # MAX_ldrhgt >= 55 & MAX_ldrhgt < 60 ~ "55-60m",
     MAX_ldrhgt >= 50 ~ "50+m"
   )) %>%
   mutate(Hght_clss = factor(Hght_clss, levels = c("0-5m", "5-10m", "10-15m", 
                                                   "15-20m", "20-25m", "25-30m",
                                                   "30-35m", "35-40m", "40-45m", "45-50m",
-                                                  "50+m"))) %>%#,"55+m", "55-60m","60+m"
+                                                  "50+m"))) %>%
   pivot_longer(cols = starts_with("hght_res_"), 
                names_to = "Method", 
                values_to = "Height_Residual") %>%st_drop_geometry()%>%data.frame()%>%
   mutate(Model = case_when(
-    # Method == "hght_res_VRI" ~ "VRI",
     Method == "hght_res_ours" ~ "Our",
-    # Method == "hght_res_ourNLL" ~ "Our+Wloss+NLL",
-    # Method == "hght_res_ourUM" ~ "Our",
     Method == "hght_res_1m" ~ "1m_Res",
     Method == "hght_res_Sothe" ~ "Sothe",
     Method == "hght_res_Potapov" ~ "Potapov",
@@ -421,13 +412,12 @@ p_res <- p_res_long%>%
   geom_hline(yintercept = 0, color = "grey",  size = 0.75) +  # Add grey line at y=0 linetype = "dashed",
   stat_boxplot(geom = "errorbar", width = 0.3, position = position_dodge(0.8)) +  # Add whiskers explicitly
   geom_boxplot(outlier.shape = NA, width = 0.6, position = position_dodge(0.8), size=0.25) +
-  # scale_fill_viridis_d(option = "B") +  # Use Viridis color palette for categorical data
+
   coord_cartesian(ylim = c(-35, 35)) +  
   scale_fill_manual(values = viridis_colors,
                     labels = c(
                       "Our           (RÂ²:0.75, MAE:4.90, RMSE:6.92, BIAS:0.34)",
-                      # "VRI             (RÂ²:0.16, MAE:11.2, RMSE:15.68, BIAS:-5.27)",
-                      # "Ours           (RÂ²:0.76, MAE:4.73, RMSE:6.79, BIAS:-0.86)",
+                      # "VRI             (R²:0.16, MAE:11.2, RMSE:15.68, BIAS:-5.27)",
                       "Potapov    (RÂ²:0.39, MAE:8.09, RMSE:10.85, BIAS:-4.39)", 
                       "Lang          (RÂ²:0.44, MAE:8.11, RMSE:10.20, BIAS:3.52)", 
                       "Pauls         (RÂ²:0.56, MAE:7.06, RMSE:9.27, BIAS:-3.35)"
@@ -440,21 +430,15 @@ p_res <- p_res_long%>%
 #   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 size = 14
 p_res  + 
-  # annotate("text", x = 1/15, y = 0.7, 
-  #                 label = paste0("R? = ", round(r2_value, 3)), 
-  #                 size = 6, hjust = 0, fontface = "bold")+
   theme(legend.position=c(0.73,0.9),
         strip.text.x = element_text( size = size, color = "black", face = "bold"),
         strip.text.y = element_text(size = size, color = "black", face = "bold.italic" ),
         legend.direction='vertical', legend.title=element_text(size=size),legend.text = element_text(size=12),
-        # legend.background = element_rect(fill="white", linetype="solid", size=0.5, colour="black"),
-        # legend.spacing.y=unit(1.5, "mm"), panel.border=element_rect(colour="black", fill=NA, size=0.5),
         panel.spacing.x = unit(0.1, "lines"),panel.spacing.y = unit(0.1, "lines"),
         panel.background=element_rect(fill="white", colour="black", size=1, linetype="solid"),
         panel.grid.major=element_line(size=0.25, linetype='dashed', colour="lightgrey"),
         panel.grid.minor=element_line(size=0.25, linetype='dashed', colour="lightgrey"), 
-        plot.title=element_text(color="black", size=14, hjust=0,face='bold'), #axis.title.x=element_blank(),axis.ticks.x=element_blank(),
-        #axis.text.x=element_blank(),#element_text(size=10, angle=45, hjust = 1), 
+        plot.title=element_text(color="black", size=14, hjust=0,face='bold'), 
         axis.title.y=element_text(size=size), axis.text.x=element_text(size=size,color="black"),
         axis.text.y=element_text(color="black",size=size), legend.key=element_rect(fill="transparent", colour="transparent")) 
 
@@ -470,7 +454,6 @@ p_res <- p_res_long%>%
   geom_hline(yintercept = 0, color = "grey",  size = 0.75) +  # Add grey line at y=0 linetype = "dashed",
   stat_boxplot(geom = "errorbar", width = 0.3, position = position_dodge(0.8)) +  # Add whiskers explicitly
   geom_boxplot(outlier.shape = NA, width = 0.6, position = position_dodge(0.8), size=0.25) +
-  # scale_fill_viridis_d(option = "B") +  # Use Viridis color palette for categorical data
   coord_flip()+
   coord_cartesian(xlim = c(-35, 35)) +  
   scale_fill_manual(values = viridis_colors,

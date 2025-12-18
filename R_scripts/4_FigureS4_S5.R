@@ -25,7 +25,7 @@ mytheme =  theme(legend.position="bottom",plot.margin = unit(c(0,30,0,0), "pt"),
 
 
 ############################################################################
-# Loading all environemtnal descriptors 
+# Loading all environmental descriptors 
 #DEM
 DEM<-terra::rast('DEM_3005.tif')
 
@@ -41,9 +41,7 @@ if(crs(Prediction)!=crs(Wet_ind)){
 
 #Climate
 clim<-terra::rast("clim_3005.tif")
-# c('AHM.asc', 'bFFP.asc', 'CMD.asc', 'CMI.asc',"DD_0.asc",'DD_18.asc','DD18.asc', 'DD5.asc',   'eFFP.asc',
-#   'EMT.asc', 'Eref.asc', 'EXT.asc', 'FFP.asc', 'MAP.asc', 'MAT.asc', 'MCMT.asc', 'MSP.asc', 'MWMT.asc',
-#   'NFFD.asc', 'PAS.asc', 'RH.asc', 'SHM.asc', 'TD.asc')
+
 
 if(crs(Prediction)!=crs(clim)){
   clim<-terra::project(clim, crs(Prediction))
@@ -73,7 +71,7 @@ crs_check <- sapply(all_rasters, crs)
 path <- file.path(getwd(), "msk_rast")
 vi_msk <- rast(file.path(path, "VI_Mask.tif"))
 wt_msk <- rast(file.path(path, "water_Mask.tif"))
-ch_msk <- rast(file.path(path, "Cheight.tif"))     # fixed name
+ch_msk <- rast(file.path(path, "Cheight.tif"))    
 fc_msk <- rast(file.path(path, "FCover.tif"))
 
 ## Biogeoclimatic zones #
@@ -87,7 +85,7 @@ r1 <- rasterize(BEC, template, field = "ZONE")
 plot(r1)
 
 cats(r1)
-# Keep mask: keep only classes 0, 2, 3 → 1, otherwise NA
+# Keep mask: keep only classes 0, 2, 3 (remove CMAunp)
 keep_mask <- terra::ifel(r1 %in% c(0, 2, 3), 1, NA)
 
 vi_msk <- ifel(vi_msk == 1, 1, NA)

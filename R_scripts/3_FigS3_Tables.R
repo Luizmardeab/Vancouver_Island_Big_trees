@@ -34,14 +34,14 @@ plot(r2)
 ###################### Calculate spatial overlap ###############################
 # List all folders inside outdir
 cats(r1)
-keep_mask <- terra::ifel(r1 %in% c(0, 2, 3), 1, NA)
+keep_mask <- terra::ifel(r1 %in% c(0, 2, 3), 1, NA) #Remove CMAunp
 
 plot(keep_mask)
 
 compute_overlap <- function(ref_raster, target_raster,keep_mask=keep_mask){
   r_ref <- rast(ref_raster)
   r_target <- rast(target_raster)
-  # Mask: keep only ra == 0 or ra == 2
+
   
   r_ref    <- mask(r_ref, keep_mask)
   r_target <- mask(r_target, keep_mask)
@@ -96,7 +96,7 @@ for (j in perc_values){
   overlap_data[[paste0(j, "%_frac")]] <- overlap_frac
 }
 
-# Convert to a table like before
+# Convert to a table
 df <- data.frame(
   perc = rep(names(overlap_data)[c(TRUE, FALSE)], each = 4),
   model = rep(paste0("Model_", c("Potapov","Lang","Pauls","VRI")), length(perc_values)),
@@ -215,8 +215,8 @@ file_info <- data.frame(
 file_info <- file_info[file_info$top %in% c("1","5","10"), ]
 
 
-# r2 = rasterize(BEC, template, field = "MAP_LABEL") 
-# plot(r2)
+r2 = rasterize(BEC, template, field = "MAP_LABEL")
+plot(r2)
 
 
 # ---- Run all BEC variant representation ----
@@ -612,6 +612,7 @@ VRI$STAge <- ifelse(
 
 
 VRI$STAge <- factor(VRI$STAge, levels = c("Unaged","Young", "Mature", "Old"))
+
 # Add numeric code column
 VRI$STAge_code <- as.numeric(VRI$STAge)  # if you want 0,1,2
 table(VRI$STAge,VRI$STAge_code)

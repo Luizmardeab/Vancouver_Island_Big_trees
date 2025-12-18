@@ -22,7 +22,7 @@ shapepath<-"Van_Is.shp"
 vc<-terra::vect(shapepath)
 vc$AOI=1
 
-#Canopy cover
+#Canopy cover model
 ccover_path = "Z:/CDFCP/CC&CH/CCvoer.tif"
 
 r_clamped <- clamp(ccover, lower = 0, upper = 100, values=TRUE)
@@ -60,13 +60,13 @@ dir.create(pathout, recursive = TRUE, showWarnings = FALSE)
 # File paths
 vi_msk <- file.path(pathout, "VI_Mask.tif")
 wt_msk <- file.path(pathout, "water_Mask.tif")
-ch_msk <- file.path(pathout, "Cheight.tif")     # fixed name
+ch_msk <- file.path(pathout, "Cheight.tif")    
 cc_msk <- file.path(pathout, "CCover.tif")
 
 # Write rasters
 writeRaster(r1,      vi_msk, filetype = "GTiff", overwrite = TRUE, gdal = c("COMPRESS=LZW"))
 writeRaster(wm,      wt_msk, filetype = "GTiff", overwrite = TRUE, gdal = c("COMPRESS=LZW"))
-writeRaster(r,       ch_msk, filetype = "GTiff", overwrite = TRUE, gdal = c("COMPRESS=LZW"))   # fixed variable
+writeRaster(r,       ch_msk, filetype = "GTiff", overwrite = TRUE, gdal = c("COMPRESS=LZW"))   
 writeRaster(ccover,  cc_msk, filetype = "GTiff", overwrite = TRUE, gdal = c("COMPRESS=LZW"))
 
 ### Clear memory ###
@@ -75,7 +75,7 @@ rm(list = ls()); gc()
 path <- file.path(getwd(), "msk_rast")
 vi_msk <- rast(file.path(path, "VI_Mask.tif"))
 wt_msk <- rast(file.path(path, "water_Mask.tif"))
-ch_msk <- rast(file.path(path, "Cheight.tif"))     # fixed name
+ch_msk <- rast(file.path(path, "Cheight.tif"))    
 fc_msk <- rast(file.path(path, "FCover.tif"))
 
 ## BEC #
@@ -89,7 +89,7 @@ r1 <- rasterize(BEC, template, field = "ZONE")
 plot(r1)
 
 cats(r1)
-# Keep mask: keep only classes 0, 2, 3 ??? 1, otherwise NA
+# Keep mask: remove CMAunp
 keep_mask <- terra::ifel(r1 %in% c(0, 2, 3), 1, NA)
 
 vi_msk <- ifel(vi_msk == 1, 1, NA)
@@ -133,7 +133,7 @@ dir.create(file.path(outdir, "top_trees"), recursive = TRUE, showWarnings = FALS
 thresholds <- c(top10, top5, top1)
 
 for (i in thresholds) {
-  # --- 1. Create binary raster: canopy > threshold → 1
+  # --- 1. Create binary raster: canopy > threshold 
   top <- prediction_band1 > i
   top <- classify(top, cbind(NA, 0), include.lowest = TRUE) # ensure 0/1 output
   names(top) <- paste0("Top_", i)
@@ -180,10 +180,10 @@ dir.create(file.path(outdir, "top_trees_BEC"), recursive = TRUE, showWarnings = 
 
 for(i in colnames(z)[3:5]){
   
-  # --- 2. Create raster with matching p70 value at each pixel
+  # --- 2. Create raster with matching percentile value at each pixel
   prast <- classify(r1, cbind(z$ID, z[[i]]))  # <- use [[i]] to extract vector
   
-  # --- 3. Create binary raster: canopy > regional p70 → 1
+  # --- 3. Create binary raster: canopy > regional percentile
   top <- prediction_band1 > prast
   top <- classify(top, cbind(NA, 0), include.lowest = TRUE) # ensure 0/1 output
   names(top) <- paste(i,"pct")
@@ -391,7 +391,7 @@ dir.create(file.path(outdir, "top_trees_VRI"), recursive = TRUE, showWarnings = 
 thresholds <- c(top10_threshold, top5_threshold, top1_threshold)
 
 for (i in thresholds) {
-  # --- 1. Create binary raster: canopy > threshold → 1
+  # --- 1. Create binary raster: canopy > threshold
   top <- VRI > i
   top <- classify(top, cbind(NA, 0), include.lowest = TRUE) # ensure 0/1 output
   names(top) <- paste0("Top_", i)

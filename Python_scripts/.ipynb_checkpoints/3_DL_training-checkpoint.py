@@ -150,6 +150,8 @@ def preprocess_data(img, mask):
     validity_mask[nan_mask1] = 0
     validity_mask[nan_mask2] = 0
 
+    # # Slice the first 14 bands (before concatenating the mask)
+    # img = img[:,:,:,:14]
 
     # Normalize each band based on the provided global statistics
     global_stats = [

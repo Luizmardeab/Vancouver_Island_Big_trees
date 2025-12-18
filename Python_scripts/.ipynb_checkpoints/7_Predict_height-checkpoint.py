@@ -128,9 +128,9 @@ for image_path in filtered_image_paths[20:]:
         # Ensure nans are converted into -1
         image = np.nan_to_num(image, nan=-999.9)    
         # Create a mask based on the condition
-        nan_mask3 = (image[:, :, 3] < 650)  #water mask
+        nan_mask3 = (image[:, :, 3] < 600)
         # Set invalid areas to -999.9 for all bands where nan_mask3 is True
-        image[nan_mask3] = -999.9
+        # image[nan_mask3] = -999.9
         # Initialize a validity mask with ones, same shape as the third channel of large_image
         validity_mask = np.ones_like(image[:, :, 3])
         # Set invalid areas (where nan_mask3 is True) to 0 in the validity mask
