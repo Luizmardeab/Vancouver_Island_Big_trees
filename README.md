@@ -1,4 +1,4 @@
-# Deep learning Reveals Large Trees as a Critical Conservation Gap in Canada's Coastal Temperate Rainforests 
+# Local and Global Canopy Height Models Reveal Consistent Large-Tree Forest Conservation Gaps Despite Low Spatial Agreement
 
 **Authors:**\
 Luizmar de Assis Barros<sup>a</sup>, Karen Price<sup>b</sup>, Chris Johnson<sup>a</sup>, José Bermúdez<sup>c</sup>, Juan Pablo Ramírez-Delgado<sup>a</sup>, Xavier Llano<sup>a</sup>, Camile Sothe<sup>d</sup>, Alemu Gonsamo<sup>b</sup>, Michelle Venter<sup>a</sup>, Oscar Venter<sup>a</sup>
